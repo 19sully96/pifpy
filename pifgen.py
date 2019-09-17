@@ -50,6 +50,6 @@ def populate_layer(layer,cell_width,cell_height,gap):
         if y%loop_height == 0:
             multiplier += 1
 
-def wall_id(layer,n):
-    wall_id = layer.max() + n
-    return wall_id
+def new_id(layer,n):
+    new_id = layer.max() + n
+    return new_id
