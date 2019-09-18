@@ -10,7 +10,7 @@ from pifpy import pifgen
 filename = 'filename.PIF'
 X = 256  # dimensions in pixels
 Y = 256
-Z = 1
+Z = 1    # Current pifgen functions only allow 2D configurations
 
 # Layer 1
 cell_type = 'Medium'
@@ -33,7 +33,7 @@ layer3 = np.zeros((X,Y),dtype=int)
 wall_width = 10
 wall1 = pifgen.get_id(layer2,1)
 wall2 = pifgen.get_id(layer2,2)
-layer3[0:wall_width-1] = wall1
-layer3[X-wallwidth:X-1] = wall2
+layer3[:,0:wall_width-1] = wall1    # left wall
+layer3[:,X-wallwidth:X-1] = wall2    # right wall
 
 pifgen.append_layer(layer3,cell_type,filename)
