@@ -7,8 +7,8 @@ def write_layer(layer,cell_type,filename):
     for row in np.arange(width):
         for col in np.arange(height):
             cell_id = repr(layer[row][col])
-            x = repr(row)
-            y = repr(col)
+            x = repr(col)
+            y = repr(row)
             f.write(cell_id + ' ' + cell_type + ' ' + x + ' ' + x + ' ' + y + ' ' + y + ' 0 0\n')
     f.close()
 
@@ -20,8 +20,8 @@ def append_layer(layer,cell_type,filename):
         for col in np.arange(height):
             if layer[row][col]!=0:
                 cell_id = repr(layer[row][col])
-                x = repr(row)
-                y = repr(col)
+                x = repr(col)
+                y = repr(row)
                 f.write(cell_id + ' ' + cell_type + ' ' + x + ' ' + x + ' ' + y + ' ' + y + ' 0 0\n')
     f.close()
 
@@ -53,3 +53,10 @@ def populate_layer(layer,cell_width,cell_height,gap):
 def get_id(layer,n):
     get_id = layer.max() + n
     return get_id
+
+def square_cell(layer,cell_id,cell_width,cell_height,x,y): 
+    # x and y are center coordinates of cell 
+    dx = np.int(cell_width/2)
+    dy = np.int(cell_height/2)
+    layer[y-dy:y+dy,x-dx:x+dx] = cell_id
+    return layer
