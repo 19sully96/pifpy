@@ -33,7 +33,7 @@ layer3 = np.zeros((X,Y),dtype=int)
 wall_width = 10
 wall1 = pifgen.get_id(layer2,1)
 wall2 = pifgen.get_id(layer2,2)
-layer3[:,0:wall_width-1] = wall1    # left wall
-layer3[:,X-wall_width:X-1] = wall2    # right wall
+layer3[:,0:wall_width] = wall1    # left wall
+layer3[:,X-wall_width:X] = wall2    # right wall
 
 pifgen.append_layer(layer3,cell_type,filename)
