@@ -25,7 +25,7 @@ def append_layer(layer,cell_type,filename):
                 f.write(cell_id + ' ' + cell_type + ' ' + x + ' ' + x + ' ' + y + ' ' + y + ' 0 0\n')
     f.close()
 
-def populate_layer(layer,cell_width,cell_height,gap):
+def populate_uniform(layer,cell_width,cell_height,gap):
     width = layer.shape[0]
     height = layer.shape[1]
     loop_width = cell_width + gap
@@ -49,7 +49,23 @@ def populate_layer(layer,cell_width,cell_height,gap):
         
         if y%loop_height == 0:
             multiplier += 1
-
+            
+def populate_random(layer, cell_number, start_id):
+    x_max = np.shape(layer)[1]
+    y_max = np.shape(layer)[0]
+    rand_xcoord = np.random.randint(0,x_max,cell_number)
+    rand_ycoord = np.random.randint(0,y_max,cell_number)
+    for i in np.arange(cell_number):
+        if layer[rand_ycoord[i]][rand_xcoord[i]] != 0:
+            new_x = np.random.randint(0,x_max)
+            new_y = np.random.randint(0,y_max)
+            while layer[new_y][new_x] != 0:
+                new_x = np.random.randint(0,x_max)
+                new_y = np.random.randint(0,y_max)
+            layer[new_y][new_x] = start_id + i
+        else:
+            layer[rand_ycoord[i]][rand_xcoord[i]] = start_id + i         
+            
 def get_id(layer,n):
     get_id = layer.max() + n
     return get_id
