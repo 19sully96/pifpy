@@ -51,20 +51,17 @@ def populate_uniform(layer,cell_width,cell_height,gap):
             multiplier += 1
             
 def populate_random(layer, n_cells, start_id):
-    x_max = np.shape(layer)[1]
-    y_max = np.shape(layer)[0]
-    rand_xcoord = np.random.randint(0,x_max,n_cells)
-    rand_ycoord = np.random.randint(0,y_max,n_cells)
+    x_min = 1
+    x_max = np.shape(layer)[1]-1
+    y_min = 1
+    y_max = np.shape(layer)[0]-1
     for i in np.arange(n_cells):
-        if layer[rand_ycoord[i]][rand_xcoord[i]] != 0:
-            new_x = np.random.randint(0,x_max)
-            new_y = np.random.randint(0,y_max)
-            while layer[new_y][new_x] != 0:
-                new_x = np.random.randint(0,x_max)
-                new_y = np.random.randint(0,y_max)
-            layer[new_y][new_x] = start_id + i
-        else:
-            layer[rand_ycoord[i]][rand_xcoord[i]] = start_id + i         
+        rand_x = np.random.randint(x_min,x_max)
+        rand_y = np.random.randint(y_min,y_max)
+        while layer[rand_y][rand_x] != 0:
+            rand_x = np.random.randint(x_min,x_max)
+            rand_y = np.random.randint(y_min,y_max)
+        layer[rand_y][rand_x] = start_id + i         
             
 def get_id(layer,n):
     get_id = layer.max() + n
