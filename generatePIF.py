@@ -28,7 +28,7 @@ pifgen.populate_uniform(layer2,cell_width,cell_height,gap)
 ## random seed
 # n_cells = 10
 # start_id = pifgen.get_id(layer1,1)
-# populate_random(layer2,n_cells,start_id)
+# pifgen.populate_random(layer2,n_cells,start_id)
 ## write layer to file
 pifgen.append_layer(layer2,cell_type,filename)
 
